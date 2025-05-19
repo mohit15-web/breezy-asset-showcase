@@ -1,11 +1,16 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Search } from 'lucide-react';
+import { Search, LogIn, Download } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginModal from '@/components/auth/LoginModal';
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -39,7 +44,30 @@ const Navbar = () => {
           
           <ThemeToggle />
           
-          <Button className="hidden md:flex">Download Free Pack</Button>
+          {user ? (
+            <div className="flex items-center gap-3">
+              <div className="hidden md:block">
+                <div className="flex items-center gap-2">
+                  {user.picture && (
+                    <img 
+                      src={user.picture} 
+                      alt={user.name} 
+                      className="w-8 h-8 rounded-full"
+                    />
+                  )}
+                  <span className="text-sm font-medium">{user.name}</span>
+                </div>
+              </div>
+              <Button variant="outline" onClick={logout} className="hidden md:flex">
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button className="hidden md:flex" onClick={() => setLoginModalOpen(true)}>
+              <LogIn className="mr-2 h-4 w-4" />
+              Login
+            </Button>
+          )}
           
           <Button variant="outline" size="icon" className="md:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
@@ -50,6 +78,12 @@ const Navbar = () => {
           </Button>
         </div>
       </div>
+      
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+      />
     </nav>
   );
 };
