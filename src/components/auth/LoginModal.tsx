@@ -56,7 +56,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSuccess }) =
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">Login Required</DialogTitle>
           <DialogDescription className="text-center pb-4">
-            Please log in to download assets from our platform.
+            Please log in to download icons from our platform.
           </DialogDescription>
         </DialogHeader>
         
