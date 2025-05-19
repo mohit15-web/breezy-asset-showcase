@@ -15,16 +15,16 @@ const Navbar = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+            <Link to="/icons" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
               Icons
             </Link>
-            <Link to="/" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+            <Link to="/illustrations" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
               Illustrations
             </Link>
-            <Link to="/" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+            <Link to="/ui-kits" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
               UI Kits
             </Link>
-            <Link to="/" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+            <Link to="/pricing" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
               Pricing
             </Link>
           </div>
